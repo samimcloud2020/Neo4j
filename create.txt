@@ -1,7 +1,38 @@
-CREATE (p:Person {name: 'Tom Haulks', born: "1969"})
+CREATE (p:Person {name: 'samim', born: "1978"})
 
-CREATE (m:Movie {title:'Cloud Atlas', released: "2004"})
+CREATE (m:Movie {title:'pyar', released: "2004"})
 
-
+**********************************************************************************
 CREATE (:Person:Actor {name: 'Tom Hanks', born: 1956})-[:ACTED_IN {roles: ['Forrest']}]->(:Movie {title: 'Forrest Gump', released: 1994})<-[:DIRECTED]-(:Person {name: 'Robert Zemeckis', born: 1951})
 
+3 nodes: Actor, Movie, Person
+2 relationships: ACTED_IN, DIRECTED
+7 PROPERTY KEYS: born, name, released, roles, title
+
+
+MATCH p=()-[:ACTED_IN]->() RETURN p LIMIT 25;
+
+MATCH p=()-[:DIRECTED]->() RETURN p LIMIT 25;
+
+MATCH (n:Actor) RETURN n LIMIT 25;
+
+MATCH (n:Movie) RETURN n LIMIT 25;
+
+MATCH (n:Person) RETURN n LIMIT 25;
+
+MATCH (n) 
+WHERE n.born IS NOT NULL
+RETURN DISTINCT "node" as entity, n.born AS born LIMIT 25
+UNION ALL 
+MATCH ()-[r]-() 
+WHERE r.born IS NOT NULL
+RETURN DISTINCT "relationship" AS entity, r.born AS born LIMIT 25;
+
+
+MATCH (n) 
+WHERE n.name IS NOT NULL
+RETURN DISTINCT "node" as entity, n.name AS name LIMIT 25
+UNION ALL 
+MATCH ()-[r]-() 
+WHERE r.name IS NOT NULL
+RETURN DISTINCT "relationship" AS entity, r.name AS name LIMIT 25;
