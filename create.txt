@@ -4,6 +4,9 @@ CREATE (m:Movie {title:'pyar', released: "2004"})
 
 CREATE (p:Person {name:'samim'})-[:HERO_IN]->(m:Movie {title:"pyar"})
 
+CREATE(p:Person {born: "1985", producer: "mona"})
+
+CREATE(p:Person {producer:"mona"})-[:PRODUCED_MOVIE]->(m:Movie {title:"pyar"})
 **********************************************************************************
 CREATE (:Person:Actor {name: 'Tom Hanks', born: 1956})-[:ACTED_IN {roles: ['Forrest']}]->(:Movie {title: 'Forrest Gump', released: 1994})<-[:DIRECTED]-(:Person {name: 'Robert Zemeckis', born: 1951})
 
