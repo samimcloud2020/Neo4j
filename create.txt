@@ -1,1 +1,7 @@
+CREATE (p:Person {name: 'Tom Haulks', born: "1969"})
+
+CREATE (m:Movie {title:'Cloud Atlas', released: "2004"})
+
+
+CREATE (:Person:Actor {name: 'Tom Hanks', born: 1956})-[:ACTED_IN {roles: ['Forrest']}]->(:Movie {title: 'Forrest Gump', released: 1994})<-[:DIRECTED]-(:Person {name: 'Robert Zemeckis', born: 1951})
 
